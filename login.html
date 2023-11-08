@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Reset default margin and padding for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image:url(court.jpeg);
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: none;
+            position: relative;
+            background-position: center;
+        }
+
+        .maincontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login {
+            background: #2f8cd7;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 1px #000;
+            text-align: center;
+            height: 400px;
+            aspect-ratio: 1;
+        }
+
+        .images {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center images vertically */
+        }
+
+        .user-type-button {
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .user-type-button img {
+            width: 50px;
+            height: auto;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .user-type-button img:hover {
+            border-color: #007bff;
+        }
+
+        .centered-image img {
+            display: none;
+            margin: 0 auto;
+            width: 50px;
+            height: auto;
+        }
+
+        .form {
+            margin-top: 20px;
+        }
+
+        form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #babf85;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .register-text {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .login {
+                max-width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="maincontainer">
+        <div class="login">
+            <div class="images">
+                <div class="user-type-button" onclick="selectUserType('client')">
+                    <img src="client.jpeg" alt="client" width="50">
+                </div>
+                <div class="user-type-button" onclick="selectUserType('advocate')">
+                    <img src="advocate.jpeg" alt="advocate" width="50">
+                </div>
+                <div class="user-type-button" onclick="selectUserType('coa')">
+                    <img src="coa.jpeg" alt="coa" width="50">
+                </div>
+                <div class="user-type-button" onclick="selectUserType('judge')">
+                    <img src="judge.jpeg" alt="judge" width="50">
+                </div>
+            </div>
+            <div class="centered-image" id="selected-image">
+                <img src="" alt="" width="50">
+            </div>
+            <div class="form">
+                <form action="">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required placeholder="Username/Phone Number">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required placeholder="Password">
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+            <div class="register-text">
+                Don't have an account? <a href="#">Register</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function selectUserType(userType) {
+            const selectedImage = document.querySelector('.user-type-button img[alt="' + userType + '"]');
+            document.getElementById('selected-image').innerHTML = selectedImage.outerHTML;
+            const userImages = document.querySelectorAll('.user-type-button img');
+            userImages.forEach(image => {
+                if (image !== selectedImage) {
+                    image.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

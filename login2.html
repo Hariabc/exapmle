@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login Page for Teachers and Students">
+  <title>Login Page</title>
+  <style>
+    /* Your existing CSS styles here */
+    .user-type-button {
+      display: inline-block;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    .user-type-selection {
+      display: block;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form action="your_server_endpoint" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <div class="user-type-selection">
+        <div class="user-type-button" onclick="selectUserType('teacher')">
+          <img src="teacher-image.png" alt="Teacher" width="50">
+          <p>Teacher</p>
+        </div>
+
+        <div class="user-type-button" onclick="selectUserType('student')">
+          <img src="student-image.png" alt="Student" width="50">
+          <p>Student</p>
+        </div>
+      </div>
+
+      <div class="hidden" id="teacher-login">
+        <!-- Teacher login form or content goes here -->
+        <p>This is the teacher login form.</p>
+      </div>
+
+      <div class="hidden" id="student-login">
+        <!-- Student login form or content goes here -->
+        <p>This is the student login form.</p>
+      </div>
+
+      <input type="hidden" id="selectedUserType" name="usertype" value="">
+      <input type="submit" value="Login">
+    </form>
+  </div>
+
+  <script>
+    function selectUserType(userType) {
+      document.getElementById('selectedUserType').value = userType;
+
+      if (userType === 'teacher') {
+        document.getElementById('teacher-login').classList.remove('hidden');
+        document.getElementById('student-login').classList.add('hidden');
+        document.querySelector('.user-type-button img[alt="Teacher"]').style.display = 'none';
+        document.querySelector('.user-type-button img[alt="Student"]').style.display = 'inline';
+      } else if (userType === 'student') {
+        document.getElementById('teacher-login').classList.add('hidden');
+        document.getElementById('student-login').classList.remove('hidden');
+        document.querySelector('.user-type-button img[alt="Teacher"]').style.display = 'inline';
+        document.querySelector('.user-type-button img[alt="Student"]').style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
